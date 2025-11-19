@@ -12,17 +12,20 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: stable
 
+      - name: Verify Flutter install
+        run: flutter --version
+
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Run Flutter analyze
+      - name: Run analyzer
         run: flutter analyze
 
       - name: Run tests
