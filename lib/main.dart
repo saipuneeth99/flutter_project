@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const First());
+  runApp(const MyApp());
 }
 
-class First extends StatelessWidget {
-  const First({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          title: const Text('Git Repo'),
           centerTitle: false,
           titleSpacing: 0.0,
-          title: Text(
-            'Git Repo',
-            style: TextStyle(color: Colors.blue),
-          ),
         ),
-        body: Center(child: Text('Hello, Git!', style: TextStyle(color: Colors.black),)),
+        body: const Center(
+          child: Text('Hello, Git!', style: TextStyle(color: Colors.black)),
+        ),
       ),
     );
   }
