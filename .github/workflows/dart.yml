@@ -12,9 +12,8 @@ on:
 
 jobs:
   analyze:
-    name: Quick checks (analyze)
-    runs-on: ubuntu-latest
-    continue-on-error: true
+    name: Analyze (macOS)
+    runs-on: macos-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -34,11 +33,10 @@ jobs:
         run: flutter analyze
 
   test:
-    name: Full tests (PRs, scheduled, and manual runs)
-    runs-on: ubuntu-latest
+    name: Full tests (macOS)
+    runs-on: macos-latest
     needs: analyze
-    # Run tests only for PRs, scheduled runs, or manual workflow_dispatch; skip on direct pushes.
-    if: github.event_name != 'push'
+    # Run tests on every push (user requested checks on push). Also run for PRs, schedule and manual dispatch.
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
