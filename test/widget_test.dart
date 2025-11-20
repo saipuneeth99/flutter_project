@@ -5,33 +5,19 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_adv/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test (tolerant)', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+  testWidgets('Demo app displays title and body', (WidgetTester tester) async {
+    // Build the current app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
-    // If this app is not the default counter app (i.e. it doesn't show '0'),
-    // exit early so the test does not fail during daily iterative pushes.
-    if (find.text('0').evaluate().isEmpty) {
-      // App doesn't expose counter UI — skip the rest of this test.
-      return;
-    }
+    // Verify AppBar title is 'Git Repo'.
+    expect(find.text('Git Repo'), findsOneWidget);
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify body text is 'Hello, Git!'.
+    expect(find.text('Hello, Git!'), findsOneWidget);
   });
 }
