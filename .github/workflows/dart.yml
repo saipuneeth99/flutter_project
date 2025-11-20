@@ -13,7 +13,7 @@ on:
 jobs:
   analyze:
     name: Analyze (macOS)
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -33,9 +33,12 @@ jobs:
         run: flutter analyze
 
   test:
-    name: Full tests (macOS)
-    runs-on: macos-latest
+    name: Full tests (macOS + Ubuntu)
     needs: analyze
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     # Run tests on every push (user requested checks on push). Also run for PRs, schedule and manual dispatch.
     steps:
       - name: Checkout repository
